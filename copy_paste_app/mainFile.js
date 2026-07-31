@@ -30,7 +30,7 @@ const server = http.createServer(async (request, response) => {
             readableData.pipe(response);
         } else { console.log('there is some eror in the creatation of chunks ',) }
 
-        //wating for 5 second , and then delete the file.
+        //delete the temporary file 
         response.on('close', async ()=>{
             if (fs.existsSync(newFile)) {
                 await fsawat.unlink(newFile)
