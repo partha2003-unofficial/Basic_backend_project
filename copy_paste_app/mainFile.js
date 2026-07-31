@@ -31,12 +31,12 @@ const server = http.createServer(async (request, response) => {
         } else { console.log('there is some eror in the creatation of chunks ',) }
 
         //wating for 5 second , and then delete the file.
-        setTimeout(async () => {
+        response.on('close', async ()=>{
             if (fs.existsSync(newFile)) {
                 await fsawat.unlink(newFile)
                 eventMassage.emit('fileDelete')
             }
-        }, 5000);
+        })
 
     } catch (error) {
         console.log('there are some error: ', error)
