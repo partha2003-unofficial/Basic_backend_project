@@ -3,6 +3,8 @@ import path from 'path'
 import urlRoute from './routes/url.routers.js'
 import router from './routes/staticRouter.routes.js'
 import { connectionMongodb } from './connnection.mongodb.js';
+import userRouter from './routes/user.routes.js';
+
 const application = express()
 const PORT = 8000;
 
@@ -20,5 +22,6 @@ application.use(express.urlencoded({ extended: false }))
 
 application.use('/url', urlRoute)
 application.use('/', router)
+application.use('/user',userRouter)
 
 application.listen(PORT, () => console.log(`server is running , at the port of : ${PORT}`))
