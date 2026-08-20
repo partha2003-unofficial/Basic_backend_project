@@ -1,1 +1,2 @@
-# this is the projects that i have been made in the journey of backend lerarning in nodeJS
+This is the project that I have been working on in the journey of backend learning in NodeJS
+
