@@ -5,8 +5,134 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: black;
+            background: linear-gradient(135deg, #2f7a78, #6fb3ae);
             color: white;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            background: rgba(255, 255, 255, 0.12);
+            border-left: 4px solid #ffb347;
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 0.95rem;
+            max-width: 560px;
+            width: 100%;
+            word-break: break-all;
+            box-sizing: border-box;
+        }
+
+        div {
+            width: 100%;
+            max-width: 700px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        label {
+            width: 100%;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 6px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            background: #fff;
+            color: #222;
+            transition: box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus {
+            box-shadow: 0 0 0 3px rgba(255, 179, 71, 0.5);
+        }
+
+        button {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #ffb347;
+            color: #2b2b2b;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        button:hover {
+            background: #ffc266;
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        th {
+            background: rgba(0, 0, 0, 0.2);
+            text-align: left;
+            padding: 14px 16px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            font-size: 0.9rem;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        @media (max-width: 480px) {
+            form {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
     <meta charset="UTF-8">
@@ -41,10 +167,18 @@
                         <tbody>
                             <% urls.forEach((element,index)=> { %>
                                 <tr>
-                                <td><%= index+1 %></td>
-                                <td><%= element.shortId %></td>
-                                <td><%= element.redirectURL %></td>
-                                <td><%= element.visitHistory.length %></td>
+                                    <td>
+                                        <%= index+1 %>
+                                    </td>
+                                    <td>
+                                        <%= element.shortId %>
+                                    </td>
+                                    <td>
+                                        <%= element.redirectURL %>
+                                    </td>
+                                    <td>
+                                        <%= element.visitHistory.length %>
+                                    </td>
                                 </tr>
                                 <% }) %>
                         </tbody>
