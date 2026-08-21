@@ -3,7 +3,8 @@ import urlModel from '../models/url.model.js'
 const router = express.Router()
 
 router.get('/', async (request, response) => {
-    const allURLs = await urlModel.find({})
+    if (!request.user) return response.redirect('/login')
+    const allURLs = await urlModel.find({ createdBy: request.user._id })
     response.render('index.views.ejs',
         { urls: allURLs })
 })

@@ -9,7 +9,8 @@ async function handlGenerateNewShortID(request, response) {
     await urlModel.create({
         shortId: shortIdgenerator,
         redirectURL: body.url,
-        visitHistory: []
+        visitHistory: [],
+        createdBy: request.user._id
     })
     return response.render('index.views.ejs', { id: shortIdgenerator })
 }

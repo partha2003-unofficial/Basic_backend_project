@@ -8,4 +8,11 @@ function restictToLoggedinUserOnly(request, response, next) {
     next();
 }
 
-export { restictToLoggedinUserOnly }
+function chackAuth(request, response, next) {
+    const userid = request.cookies?.uid;
+    const user = getUser(userid);
+    request.user = user;
+    next()
+}
+
+export { restictToLoggedinUserOnly, chackAuth }

@@ -5,7 +5,7 @@ import router from './routes/staticRouter.routes.js'
 import { connectionMongodb } from './connnection.mongodb.js';
 import userRouter from './routes/user.routes.js';
 import cookieParser from 'cookie-parser';
-import { restictToLoggedinUserOnly } from './middlewares/auth.middleware.js'
+import { chackAuth, restictToLoggedinUserOnly } from './middlewares/auth.middleware.js'
 
 const application = express()
 const PORT = 8000;
@@ -25,7 +25,7 @@ application.use(cookieParser())
 
 //routes
 application.use('/url', restictToLoggedinUserOnly, urlRoute) // inline middleware (restictToLoggedinUserOnly)
-application.use('/', router)
+application.use('/', chackAuth, router)
 application.use('/user', userRouter)
 
 application.listen(PORT, () => console.log(`server is running , at the port of : ${PORT}`))
