@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { modelSchema } from "../models/user.model.js";
 import { setUser } from '../services/auth.services.js';
 
@@ -20,9 +19,8 @@ async function handleUserLogin(request, response) {
     if (!userFind) {
         return response.render('singup.views.ejs', { error: 'invaid username or password , please enter a valid userID and password' })
     }
-    const sessionID = uuidv4()
-    setUser(sessionID, userFind)
-    response.cookie('uid', sessionID)
+    const userToken = setUser(userFind) 
+    response.cookie('uid', userToken)
     return response.redirect("/")
 }
 export { handleUser, handleUserLogin }

@@ -1,11 +1,21 @@
-const sessionIdToUserMap = new Map()
+import jwt from 'jsonwebtoken'
+const secretKey = 'partha2003@';
 
-function setUser(userId, user) {
-    return sessionIdToUserMap.set(userId, user)
+function setUser(user) {
+    const payload = {
+        _id: user._id,
+        email: user.emailID
+    }
+    return jwt.sign(payload, secretKey) //payload
 }
 
-function getUser(userId) {
-    return sessionIdToUserMap.get(userId)
+function getUser(token) {
+    if (!token) return null;
+    try {
+        return jwt.verify(token, secretKey) //varifying through (secretKey)
+    } catch (error) {
+        return null;
+    }
 }
 
 export { setUser, getUser }
