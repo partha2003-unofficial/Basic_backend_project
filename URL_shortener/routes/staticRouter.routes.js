@@ -1,8 +1,10 @@
 import express from 'express'
 import urlModel from '../models/url.model.js'
+import { restictToLoggedinAuthorizationUserOnly } from '../middlewares/auth.middleware.js'
 const router = express.Router()
 
 router.get('/', async (request, response) => {
+    //restictToLoggedinAuthorizationUserOnly(['NORMAL']
     if (!request.user) return response.redirect('/login')
     const allURLs = await urlModel.find({ createdBy: request.user._id })
     response.render('index.views.ejs',
