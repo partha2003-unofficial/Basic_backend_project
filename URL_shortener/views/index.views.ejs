@@ -163,6 +163,7 @@
                             <th>ShortID</th>
                             <th>Redirect</th>
                             <th>clicks</th>
+                            <th>created By (ID)</th>
                         </thead>
                         <tbody>
                             <% urls.forEach((element,index)=> { %>
@@ -178,6 +179,9 @@
                                     </td>
                                     <td>
                                         <%= element.visitHistory.length %>
+                                    </td>
+                                    <td>
+                                        <%= element.createdBy %>
                                     </td>
                                 </tr>
                                 <% }) %>

@@ -25,7 +25,7 @@ application.use(cookieParser())
 application.use(chackAuthentication) //chacking authentication user(middleware)
 
 //routes
-application.use('/url', restictToLoggedinAuthorizationUserOnly(["NORMAL"]), urlRoute) // inline middleware (restictToLoggedinUserOnly)
+application.use('/url', restictToLoggedinAuthorizationUserOnly(["NORMAL",'ADMIN']), urlRoute) // inline middleware (restictToLoggedinUserOnly)
 application.use('/', router)
 application.use('/user', userRouter)
 

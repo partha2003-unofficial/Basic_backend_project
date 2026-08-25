@@ -3,13 +3,20 @@ import urlModel from '../models/url.model.js'
 import { restictToLoggedinAuthorizationUserOnly } from '../middlewares/auth.middleware.js'
 const router = express.Router()
 
-router.get('/', async (request, response) => {
-    //restictToLoggedinAuthorizationUserOnly(['NORMAL']
+router.get('/', restictToLoggedinAuthorizationUserOnly(['NORMAL', 'ADMIN']), async (request, response) => {
     if (!request.user) return response.redirect('/login')
     const allURLs = await urlModel.find({ createdBy: request.user._id })
     response.render('index.views.ejs',
         { urls: allURLs })
 })
+
+router.get('/admin', restictToLoggedinAuthorizationUserOnly(['ADMIN']), async (request, response) => {
+    if (!request.user) return response.redirect('/login')
+    const allURLs = await urlModel.find({})
+    response.render('index.views.ejs',
+        { urls: allURLs })
+})
+
 router.get('/singup', (request, response) => {
     return response.render('singup.views.ejs')
 })
