@@ -1,6 +1,10 @@
-import { Client, GatewayIntentBits, InteractionCallback } from 'discord.js'
+import { Client, GatewayIntentBits } from 'discord.js'
 import dotenv from 'dotenv'
+import { createCommandHandller } from './controllers/commandsHandller.controller.js'
+import { connectionToMongoose } from './connection.mongodb.js'
 dotenv.config()
+
+await connectionToMongoose('mongodb://localhost:27017/short_url_generater_discordBot')
 
 const client = new Client({
     intents: [ //intents means gatting the permission to the client
@@ -9,9 +13,11 @@ const client = new Client({
         GatewayIntentBits.MessageContent
     ]
 })
+//
 client.on('messageCreate', (message) => {
     if (message.author.bot) return; // if the bot is reply then return it 
-    message.reply({ content: 'hi form bot' })
+    if (message.content.startsWith('create')) {return createCommandHandller(message)} 
+    else message.reply({ content: 'hi form bot' })
     console.log(message.content)
 })
 
@@ -26,9 +32,9 @@ client.on("interactionCreate", (interaction) => {
     interaction.isChatInputCommand(): checks whether the incoming interaction is a standard slash command (/ping, /help, etc.).
     */
 
-    if (interaction.commandName === "ping") { interaction.reply("Pong! 🏓");}
-    if (interaction.commandName === "hello") {interaction.reply("Hello! 👋");}
-    if (interaction.commandName === "help") {interaction.reply("Available commands: /ping, /hello, /help");}
+    if (interaction.commandName === "ping") { interaction.reply("Pong! 🏓"); }
+    if (interaction.commandName === "hello") { interaction.reply("Hello! 👋"); }
+    if (interaction.commandName === "help") { interaction.reply("Available commands: /ping, /hello, /help"); }
 
 });
 client.login(process.env.BOTTOKEN)
