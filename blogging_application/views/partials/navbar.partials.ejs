@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg custom-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<style>
+    .custom-navbar {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        padding: 0.75rem 1rem;
+    }
+
+    .custom-navbar .navbar-brand {
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .custom-navbar .nav-link {
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 500;
+        transition: color 0.15s ease;
+    }
+
+    .custom-navbar .nav-link:hover,
+    .custom-navbar .nav-link:focus {
+        color: #fff;
+    }
+
+    .custom-navbar .nav-link.active {
+        color: #fbc2eb;
+    }
+
+    .custom-navbar .nav-link.disabled {
+        color: rgba(255, 255, 255, 0.3);
+    }
+
+    .custom-navbar .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .custom-navbar .navbar-toggler-icon {
+        filter: invert(1);
+    }
+
+    .custom-navbar .dropdown-menu {
+        background: rgba(30, 25, 50, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .custom-navbar .dropdown-item {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .custom-navbar .dropdown-item:hover,
+    .custom-navbar .dropdown-item:focus {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+    }
+
+    .custom-navbar .dropdown-divider {
+        border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .custom-navbar .form-control {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+    }
+
+    .custom-navbar .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .custom-navbar .form-control:focus {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: #a18cd1;
+        box-shadow: 0 0 0 0.2rem rgba(161, 140, 209, 0.25);
+        color: #fff;
+    }
+</style>
