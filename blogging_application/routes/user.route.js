@@ -20,19 +20,16 @@ router.get('/signin', (request, response) => {
 router.post('/signin', async (request, response) => {
     const { email, password } = request.body;
     const user = await userModel.findOne({ email })
-    console.log(password)
-    console.log(user)
     if (user) {
         const hashPassword = createHmac('sha256', user.salt).update(password).digest('hex');
         /* createHmac() sets up the machine and its key. user.salt : Use the secret key while calculating the HMAC.
            .update(): tells the HMAC object:Here is the data I want you to process. puts the data into the machine.
-           .digest() tells the machine: "I'm finished. Give me the final HMAC."
+           .digest() tells the machine: "I'm finished. Give me the final HMAC."You can call .update() multiple times if you have data in chunks (e.g., update(part1).update(part2)),
            Read it like a sentence:
 
           ** Create an HMAC machine using SHA-256 and abc123 as the key → give it hello123 as the data → finish the calculation and give me the result as hexadecimal text.
            */
-        console.log(hashPassword)
-        const result = await userModel.findOne({ password: hashPassword })
+        const result = hashPassword === user.password;
         if (result) {
             console.log('authenticated user!')
             return response.redirect('/')
