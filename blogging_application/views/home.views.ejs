@@ -10,8 +10,11 @@
 <body>
     <!-- navbar -->
     <%- include('./partials/navbar.partials.ejs') %>
-
-    <!-- script tags -->
+    <% if (locals.user) { %>
+     <%= JSON.stringify(user) %>
+    <% } %>
+     
+        <!-- script tags -->
     <%- include('./partials/scripts.partials.ejs') %>
 </body>
 
