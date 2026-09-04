@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { createHmac, randomBytes } from 'crypto'
 import userModel from '../models/user.model.js';
+import { setUserToken } from '../services/auth.services.js';
 const router = Router()
 
 router.get('/signup', (request, response) => {
@@ -31,11 +32,12 @@ router.post('/signin', async (request, response) => {
            */
         const result = hashPassword === user.password;
         if (result) {
+            const token = setUserToken(user)
             console.log('authenticated user!')
-            return response.redirect('/')
+            return response.cookie('useCookies',token).redirect('/')
         } else {
             console.log('user is not authenticated')
-            return response.redirect('/user/signin')
+            return response.render('signin.views.ejs',{error:'please enter valid password'})
         }
     } else {
         console.log('user is not founded!')

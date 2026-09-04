@@ -1,9 +1,11 @@
 import express from 'express'
+import env from 'dotenv'
 import userRoute from './routes/user.route.js'
 import { connectMongodb } from './connection.mongodb.js';
 const application = express()
+env.config()
 
-const PORT = 8000;
+const portId = process.env.PORT;
 application.use(express.urlencoded({ extended: false }))
 application.set('view engine', 'ejs')
 
@@ -14,4 +16,4 @@ application.get('/', (request, response) => {
 })
 application.use('/user', userRoute)
 
-application.listen(PORT, () => console.log('server is running at : ', PORT))
+application.listen(portId, () => console.log('server is running at : ', portId))
