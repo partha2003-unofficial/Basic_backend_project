@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- including the file that present in the partials component -->
+    <%- include('./partials/head.partials.ejs') %>
+        <title>Add New Blog</title>
+
+        <style>
+            body {
+                min-height: 100vh;
+                margin: 0;
+                background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+                font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                color: #f1f1f1;
+            }
+
+            .blog-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: calc(100vh - 80px);
+                padding: 2rem 1rem;
+            }
+
+            .blog-card {
+                background: rgba(255, 255, 255, 0.06);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 16px;
+                padding: 2.5rem 2.5rem 2rem;
+                width: 100%;
+                max-width: 700px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            }
+
+            .blog-card h2 {
+                text-align: center;
+                margin-bottom: 1.75rem;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            }
+
+            .blog-card .form-label {
+                color: #d8d8d8;
+                font-weight: 500;
+                font-size: 0.9rem;
+            }
+
+            .blog-card .form-control {
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                color: #fff;
+                border-radius: 8px;
+                padding: 0.65rem 0.9rem;
+            }
+
+            .blog-card .form-control::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+            }
+
+            .blog-card .form-control:focus {
+                background: rgba(255, 255, 255, 0.12);
+                border-color: #a18cd1;
+                box-shadow: 0 0 0 0.2rem rgba(161, 140, 209, 0.25);
+                color: #fff;
+            }
+
+            .blog-card textarea.form-control {
+                min-height: 180px;
+                resize: vertical;
+            }
+
+            .blog-card .form-text {
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.8rem;
+            }
+
+            .blog-card .btn-primary {
+                width: 100%;
+                margin-top: 0.5rem;
+                padding: 0.7rem;
+                border: none;
+                border-radius: 8px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+                color: #1a1a1a;
+                transition: transform 0.15s ease, box-shadow 0.15s ease;
+            }
+
+            .blog-card .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 18px rgba(161, 140, 209, 0.4);
+                color: #000;
+            }
+
+            .blog-card .mb-3 {
+                margin-bottom: 1.25rem !important;
+            }
+
+            /* file input needs its own text color override since Bootstrap styles it differently */
+            .blog-card input[type="file"].form-control::file-selector-button {
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+                border: none;
+                border-radius: 6px;
+                padding: 0.4rem 0.8rem;
+                margin-right: 0.75rem;
+                cursor: pointer;
+            }
+        </style>
+</head>
+
+<body>
+    <!-- navbar -->
+    <%- include('./partials/navbar.partials.ejs') %>
+
+        <div class="blog-wrapper">
+            <div class="blog-card">
+                <h2>Add New Blog</h2>
+                <form action="/blogs" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="coverImage" class="form-label">Cover Image</label>
+                        <input type="file" class="form-control" id="coverImage" name="coverImage"
+                            aria-describedby="coverImage">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter blog title"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="body" class="form-label">Body</label>
+                        <textarea class="form-control" name="body" id="body"
+                            placeholder="Write your blog content here..."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- script tags -->
+        <%- include('./partials/scripts.partials.ejs') %>
+</body>
+
+</html>

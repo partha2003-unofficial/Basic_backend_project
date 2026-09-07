@@ -3,17 +3,30 @@
 
 <head>
     <!-- including the file that present in the partials component -->
-    <%- include('./partials/head.partials.ejs') %> 
+    <%- include('./partials/head.partials.ejs') %>
         <title>Blogging Application</title>
 </head>
 
 <body>
     <!-- navbar -->
     <%- include('./partials/navbar.partials.ejs') %>
-    <% if (locals.user) { %>
-     <%= JSON.stringify(user) %>
-    <% } %>
-     
+        <!-- body  -->
+        <% if (locals.blogs) { %>
+            <div class="container mt-3">
+                <% blogs.forEach(blog => { %>
+                    <div class="card" style="width: 18rem;">
+                        <img src="<%= blog.coverImage %>" class="card-img-top" alt="card image">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= blog.title %>
+                            </h5>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <% } %>
+
         <!-- script tags -->
     <%- include('./partials/scripts.partials.ejs') %>
 </body>
