@@ -5,30 +5,111 @@
     <!-- including the file that present in the partials component -->
     <%- include('./partials/head.partials.ejs') %>
         <title>Blogging Application</title>
+
+        <style>
+            body {
+                min-height: 100vh;
+                margin: 0;
+                background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+                font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                color: #f1f1f1;
+            }
+
+            .blogs-container {
+                padding-top: 2rem;
+                padding-bottom: 3rem;
+            }
+
+            .blogs-grid {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+                justify-content: flex-start;
+            }
+
+            .blog-card {
+                background: rgba(255, 255, 255, 0.06);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                border-radius: 16px;
+                width: 18rem;
+                overflow: hidden;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+
+            .blog-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 36px rgba(161, 140, 209, 0.3);
+            }
+
+            .blog-card .card-img-top {
+                height: 180px;
+                object-fit: cover;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            }
+
+            .blog-card .card-body {
+                padding: 1.25rem;
+            }
+
+            .blog-card .card-title {
+                font-weight: 700;
+                letter-spacing: 0.3px;
+                background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+                margin-bottom: 1rem;
+                min-height: 2.5rem;
+            }
+
+            .blog-card .btn-primary {
+                width: 100%;
+                border: none;
+                border-radius: 8px;
+                padding: 0.55rem;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                background: linear-gradient(90deg, #a18cd1, #fbc2eb);
+                color: #1a1a1a;
+                transition: transform 0.15s ease, box-shadow 0.15s ease;
+            }
+
+            .blog-card .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 18px rgba(161, 140, 209, 0.4);
+                color: #000;
+            }
+        </style>
 </head>
 
 <body>
     <!-- navbar -->
     <%- include('./partials/navbar.partials.ejs') %>
-        <!-- body  -->
+        <!-- body -->
         <% if (locals.blogs) { %>
-            <div class="container mt-3">
-                <% blogs.forEach(blog => { %>
-                    <div class="card" style="width: 18rem;">
-                        <img src="<%= blog.coverImage %>" class="card-img-top" alt="card image">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= blog.title %>
-                            </h5>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="container blogs-container mt-3">
+                <div class="blogs-grid row row-cols-4">
+                    <% blogs.forEach(blog=> { %>
+                        <div class="col">
+                            <div class="blog-card col">
+                                <img src="<%= blog.coverImage %>" class="card-img-top" alt="card image">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <a href="/blogs/<%=blog._id %>" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <% }) %>
+                        <% }) %>
+                </div>
             </div>
             <% } %>
 
-        <!-- script tags -->
-    <%- include('./partials/scripts.partials.ejs') %>
+                <!-- script tags -->
+                <%- include('./partials/scripts.partials.ejs') %>
 </body>
 
 </html>

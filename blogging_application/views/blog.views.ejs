@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- including the file that present in the partials component -->
+    <%- include('./partials/head.partials.ejs') %>
+        <title>Blogging Application</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <%- include('./partials/navbar.partials.ejs') %>
+        <!-- body -->
+        <% if (locals.blog) { %>
+            <div class="container mt-3">
+                <h1><%= blog.title %></h1>
+                <img src="<%= blog.coverImage %>" alt="card image" width="700px">
+                <pre><%= blog.body %></pre> <!-- pre-> the tag is maintaining the spaceing  -->
+            </div>
+
+            <% } %>
+
+                <!-- script tags -->
+                <%- include('./partials/scripts.partials.ejs') %>
+</body>
+
+</html>
