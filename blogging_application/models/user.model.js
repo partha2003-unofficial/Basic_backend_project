@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true, unique: true },
     salt: { type: String },
     role: { type: String, enum: ['USER', 'ADMIN'], default: 'USER' },
-    profileImage: { type: String, default: '../public/image/default.png' }
+    profileImage: { type: String, default: '/image/default.png' }
 }, { timestamps: true })
 
 userSchema.pre('save', function () {
