@@ -10,14 +10,14 @@ import path from 'path'
 const application = express()
 env.config()
 
-const portId = process.env.PORT;
+const portId = process.env.PORT || 5000;
 application.use(express.urlencoded({ extended: false }))
 application.set('view engine', 'ejs')
 application.use(cookieParser())
 application.use(user_Authentication_Middleware('useCookies'))
 application.use(express.static(path.resolve('./public'))) // for static sarve to the public file 
  
-await connectMongodb('mongodb://localhost:27017/blogging_application')
+await connectMongodb(process.env.MONGO_URL)
 
 application.get('/', async (request, response) => {
     const allBlogs = await blogModel.find({});
