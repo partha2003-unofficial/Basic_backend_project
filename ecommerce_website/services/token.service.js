@@ -1,6 +1,4 @@
 import jwt from 'jsonwebtoken'
-import env from 'dotenv'
-env.config()
 
 function setUserToken(user) {
     const payload = {

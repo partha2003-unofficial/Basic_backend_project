@@ -7,7 +7,7 @@ const sendEmail = async (to, subject, message) => {
         const transport = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.GMIAL_ID,
+                user: process.env.GMAIL_ID,
                 pass: process.env.GMAIL_APP_PASSWORD
             }
         })
@@ -15,7 +15,7 @@ const sendEmail = async (to, subject, message) => {
             from: process.env.GMIAL_ID,
             to,
             subject,
-            message
+            text: message
         }
         await transport.sendMail(mailOptions) //send mail
     } catch (error) {
