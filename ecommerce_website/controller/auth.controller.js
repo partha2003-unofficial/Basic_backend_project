@@ -37,9 +37,9 @@ async function userRegistration(request, response) {
 
 async function userLogin(request, response) {
     try {
-        const { email, password } = request.body;
-        const user = await userModel.find({ email });
-        if (user) {
+        if (request.body) {
+            const { email, password } = request.body;
+            const user = await userModel.findOne({ email });
             const compareBcryptPassword = await bcrypt.compare(password, user.password) //compare with the normal password and the bcrypt passward the is store in database
             if (compareBcryptPassword) {
                 return response.status(200).json({
@@ -60,7 +60,8 @@ async function userLogin(request, response) {
 async function getUser(request, response) {
     try {
         const getUser = await userModel.find({}).select('-password')
-        return response.status(201).json(getUser)
+        if (getUser) { return response.status(302).json(getUser) }
+        else { return response.status(404).json({ message: 'data is not founded!' }) }
     } catch (error) {
         response.status(500).json({ message: 'server error' })
     }
