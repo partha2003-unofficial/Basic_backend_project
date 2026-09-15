@@ -3,11 +3,11 @@ import { chackUserToken } from "../services/token.service.js";
 
 async function protectUserLogin(request, response, next) {
     try {
-        if (request.headers.authorization && request.headers.authorization.startWith('bearer')) {
+        if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')) {
             const token = request.headers.authorization.split(' ')[1];
             const decode = chackUserToken(token);
             if (decode) {
-                const findUser = userModel.findById(decode._id).select('-password')
+                const findUser = await userModel.findById(decode._id).select('-password')
                 request.user = findUser;
                 return next()
             }
@@ -16,7 +16,7 @@ async function protectUserLogin(request, response, next) {
             return response.status(404).json({ message: 'token is not founded!' })
         }
     } catch (error) {
-        return response.status(500).json({ message: 'internal server error' })
+        return response.status(500).json({ message: 'internal server error with berear' })
     }
 }
 

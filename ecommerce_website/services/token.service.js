@@ -10,7 +10,7 @@ function setUserToken(user) {
 }
 
 function chackUserToken(token) {
-    return jwt.verify(token, process.env.PRIVETKEY_JWT, { expiresIn: '30d' })
+    return jwt.verify(token, process.env.PRIVETKEY_JWT)
 }
 
 export { setUserToken, chackUserToken }
