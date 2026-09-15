@@ -1,8 +1,8 @@
 import express from 'express'
-import path from 'path'
 import authRoute from './routes/auth.route.js'
 import { connectMongodb } from './config/connection.mongodb.config.js'
 import productRoute from './routes/products.route.js'
+import orderRoute from './routes/order.route.js'
 import env from 'dotenv'
 env.config()
 
@@ -16,9 +16,9 @@ await connectMongodb(process.env.MONGODB_URL)
 
 applicaiton.use('/api/auth', authRoute);
 applicaiton.use('/api/products',productRoute)
-// applicaiton.use('api/orders')
-// applicaiton.use('api/payment')
-// applicaiton.use('api/analytics')
+applicaiton.use('/api/orders',orderRoute)
+// applicaiton.use('/api/payment')
+// applicaiton.use('/api/analytics')
 
 
 applicaiton.listen(PORT, () => console.log('the server is running'))

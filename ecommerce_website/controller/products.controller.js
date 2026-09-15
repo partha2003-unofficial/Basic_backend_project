@@ -84,6 +84,7 @@ async function deleteProductById(request, response) {
         const findProduct = await productModel.findById(request.params.id);
         if (findProduct) {
             await productModel.deleteOne()
+            response.status(201).json({ message: 'delete sucessfull' })
         } else { response.status(404).json({ message: 'product is not found!' }) }
     } catch (error) {
         response.status(500).json({ message: 'internal server error' })
